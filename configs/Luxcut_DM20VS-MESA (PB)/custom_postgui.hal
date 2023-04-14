@@ -1,0 +1,27 @@
+
+# Include your custom_postgui HAL commands here
+# This file will not be overwritten when you run PNCconf again
+
+#-----------------------------------------------------------------------
+# Spindle RPM from encoder
+#
+net spindle-vel-fb-rpm-abs  =>  qtpyvcp.spindleRPM.in
+#-----------------------------------------------------------------------
+
+#-----------------------------------------------------------------------
+# Tool change
+#
+setp qtpyvcp.hal-tool-change.visible 0
+#-----------------------------------------------------------------------
+
+#-----------------------------------------------------------------------
+# UI spindle at speed
+# uses one of the digitial in pins
+net spindle-at-speed  =>  motion.digital-in-03
+#-----------------------------------------------------------------------
+
+#-----------------------------------------------------------------------
+# Spindle High gear button
+net belt-ratio-select <= qtpyvcp.spindleRatioHigh.checked
+#-----------------------------------------------------------------------
+

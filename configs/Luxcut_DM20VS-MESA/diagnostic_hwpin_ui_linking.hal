@@ -1,0 +1,27 @@
+# Include your custom_postgui HAL commands here
+# This file will not be overwritten when you run PNCconf again
+
+# link up diagnostics pins to mesa inputs
+# --- ESTOP-EXT --- input-04-not ---
+net estop-ext      => qtpyvcp.in4.on
+
+# --- MIN-HOME-X --- input-06-not ---
+net min-home-x     => qtpyvcp.in6.on
+
+# --- MAX-HOME-Y --- input-07-not ---
+net max-home-y     => qtpyvcp.in7.on
+
+# --- MAX-HOME-Z --- input-08-not ---
+net max-home-z     => qtpyvcp.in8.on
+
+# --- Probe connected--- input-11 ---
+net probe-conn	=> qtpyvcp.in11.on
+
+# --- Tool Setter --- input-05-not ---
+net signal-a      => qtpyvcp.in5.on
+
+# --- PROBE-tip --- input-09-not ---
+net signal-b      => qtpyvcp.in9.on
+
+# --- H/L Sensor --- input-10-not ---
+net belt-ratio-select    => qtpyvcp.in10.on

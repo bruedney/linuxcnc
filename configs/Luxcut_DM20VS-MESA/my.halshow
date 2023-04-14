@@ -1,0 +1,1 @@
+pin+pid.s.command pin+pid.s.feedback pin+pid.s.output pin+hm2_7i76e.0.encoder.00.velocity-rpm sig+motor-vel-cmd-rpm-abs sig+spindle-vel-fb-rpm-abs

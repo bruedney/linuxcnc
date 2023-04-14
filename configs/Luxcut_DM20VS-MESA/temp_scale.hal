@@ -1,0 +1,11 @@
+# gui reset link and wire up the diagnostic enc0 panel items
+#net glass-scale-reset <= [HMOT](CARD0).7i76.0.0.enc0.reset => qtpyvcp.halbtn-resetEnc0.io
+net glass-scale-reset <= qtpyvcp.halbtn-resetEnc0.io
+net glass-scale-pos   => qtpyvcp.enc0-position.in
+net enc0-count        => qtpyvcp.enc0-counts.in
+net enc0-rawcounts    => qtpyvcp.enc0-raw-counts.in
+
+#net glass-scale1-reset <= qtpyvcp.halbtn-resetEnc1.io
+#net glass-scale1-pos-raw   => qtpyvcp.enc1-position.in
+#net enc1-count        => qtpyvcp.enc1-counts.in
+#net enc1-rawcounts    => qtpyvcp.enc1-raw-counts.in

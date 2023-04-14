@@ -1,0 +1,28 @@
+2022-10-16 14:10:56,395 - qtpyvcp.plugins.status - WARNING - Homed axis anum=3 will be outside INFO.AXIS_LETTER_LIST index range: 0 to 2
+2022-10-16 14:10:56,395 - qtpyvcp.plugins.status - WARNING - Homed axis anum=3 will be outside INFO.AXIS_LETTER_LIST index range: 0 to 2
+2022-10-16 14:10:56,396 - qtpyvcp.plugins.status - WARNING - Homed axis anum=3 will be outside INFO.AXIS_LETTER_LIST index range: 0 to 2
+2022-10-16 14:10:56,396 - qtpyvcp.plugins.status - WARNING - Homed axis anum=3 will be outside INFO.AXIS_LETTER_LIST index range: 0 to 2
+2022-10-16 14:12:28,463 - qtpyvcp.plugins.notifications - ERROR - command (EMC_COOLANT_FLOOD_OFF) cannot be executed 
+ until the machine is out 
+ of E-stop and turned on 
+
+2022-10-16 14:12:28,662 - qtpyvcp.plugins.notifications - ERROR - command (EMC_COOLANT_MIST_ON) cannot be executed 
+ until the machine is out 
+ of E-stop and turned on 
+
+2022-10-16 14:12:29,662 - qtpyvcp.plugins.notifications - ERROR - command (EMC_COOLANT_MIST_OFF) cannot be executed 
+ until the machine is out 
+ of E-stop and turned on 
+
+2022-10-16 14:12:30,674 - qtpyvcp.plugins.notifications - ERROR - command (EMC_COOLANT_FLOOD_OFF) cannot be executed 
+ until the machine is out 
+ of E-stop and turned on 
+
+2022-10-16 14:12:30,862 - qtpyvcp.plugins.notifications - ERROR - command (EMC_COOLANT_MIST_ON) cannot be executed 
+ until the machine is out 
+ of E-stop and turned on 
+
+2022-10-16 14:12:32,469 - qtpyvcp.plugins.notifications - ERROR - command (EMC_COOLANT_MIST_OFF) cannot be executed 
+ until the machine is out 
+ of E-stop and turned on 
+

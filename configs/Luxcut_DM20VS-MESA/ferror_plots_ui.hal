@@ -1,0 +1,13 @@
+# Include your custom_postgui HAL commands here
+# This file will not be overwritten when you run PNCconf again
+
+
+# Link up the halplots for follwoing error tracking in diagnostics
+# scales
+#net real-x-f-error qtpyvcp.plot-xyz-cl.X-FERROR
+#net real-y-f-error qtpyvcp.plot-xyz-cl.Y-FERROR
+#net real-z-f-error qtpyvcp.plot-xyz-cl.Z-FERROR
+
+# motor and or spindle
+net motor-follow-error qtpyvcp.plot-spindle-cl.Motor-FERROR
+#net spindle-f-error qtpyvcp.plot-spindle-cl.Spindle-FERROR

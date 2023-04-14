@@ -1,0 +1,83 @@
+# Include your custom HAL commands here
+# This file will not be overwritten when you run PNCconf again
+
+#-------------------------------------------------------
+# Setup spindle gearing system
+#
+loadrt scale names=motor.scale,spindle.scale
+loadrt mux2  names=spindle.ratio
+loadrt invert names=spindle.invert
+addf motor.scale              servo-thread
+addf spindle.scale            servo-thread
+addf spindle.ratio            servo-thread
+addf spindle.invert           servo-thread
+
+# unlink the spindle-vel-cmd-rpm-abs from pid.s.command
+unlinkp pid.s.command
+# unlink pid.s from controlling the spindle speed
+unlinkp pid.s.output
+# unlink the net from the 7i76e spindle cmd pin
+unlinkp hm2_7i76e.0.7i76.0.0.spinout
+
+# setup scale so can get required motor rpm to get requested spindle speed.
+# setup mux2 choices
+setp spindle.ratio.in0 1.5
+setp spindle.ratio.in1 0.6666667
+
+# get requested speed and put into scale
+net spindle-vel-cmd-rpm-abs       =>   motor.scale.in
+# get actual measured motor speed and put into scale
+net motor-vel-fb-rpm-abs        =>   spindle.scale.in
+
+# select the gear to be used from the mux
+net belt-ratio-select         =>   spindle.ratio.sel
+net motor-ratio-gain               spindle.ratio.out
+# feed selected gear into gains motor and spindle scales
+net motor-ratio-gain          =>   motor.scale.gain
+net motor-ratio-gain          =>   spindle.invert.in
+net spindle-ratio-gain        <=   spindle.invert.out
+net spindle-ratio-gain        =>   spindle.scale.gain
+
+# gather required motor speed
+net motor-vel-cmd-rpm-abs   <=  motor.scale.out
+# gather measured spindle speed
+net spindle-vel-fb-rpm-abs  <=  spindle.scale.out
+
+# link the scaled motor rpm to 7i76e spindle cmd pin
+net motor-vel-cmd-rpm-abs => hm2_7i76e.0.7i76.0.0.spinout
+
+
+#-------------------------------------------------------
+# Make spindle feedback from encoder absolute
+#
+loadrt abs names=abs.spindle
+addf abs.spindle             servo-thread
+net spindle-vel-fb-rpm       abs.spindle.in
+
+# And link back into the pid feedback loop
+net motor-vel-fb-rpm-abs   abs.spindle.out
+
+#-------------------------------------------------------
+# Spindle error
+#
+loadrt sum2 names=sum.motor-error
+addf sum.motor-error            servo-thread
+net motor-vel-cmd-rpm-abs   =>  sum.motor-error.in0
+net motor-vel-fb-rpm-abs    =>  sum.motor-error.in1
+setp sum.motor-error.gain0 -1.0
+net motor-follow-error          sum.motor-error.out
+
+#-------------------------------------------------------
+# Spindle at speed
+#
+loadrt near names=spindle.atspeed
+addf spindle.atspeed            servo-thread
+# pass in commanded rpm for spindle (not motor)
+net spindle-vel-cmd-rpm-abs =>  spindle.atspeed.in1
+# pass in actual rpm for spindle (not motor)
+net spindle-vel-fb-rpm-abs  =>  spindle.atspeed.in2
+# link spindle at speed test to correct net
+net spindle-at-speed        <=  spindle.atspeed.out
+# set scale and diff (see near documentation)
+setp spindle.atspeed.scale  1.200000
+setp spindle.atspeed.difference 0.000000
